@@ -22,34 +22,34 @@ export default function Contact() {
 
       <div className="grid md:grid-cols-3 gap-6">
         <a
-          href="mailto:your-email@example.com"
+          href="mailto:sangampoudel642@gmail.com"
           className="rounded-2xl border border-white/10 bg-slate-900 p-6 hover:border-cyan-400/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/10 transition duration-300"
         >
           <FaEnvelope className="text-cyan-400 text-2xl mb-4" />
           <h3 className="text-lg font-semibold mb-2">Email</h3>
-          <p className="text-gray-400 break-all">your-email@example.com</p>
+          <p className="text-gray-400 break-all">sangampoudel642@gmail.com</p>
         </a>
 
         <a
-          href="https://github.com/yourusername"
+          href="https://github.com/SangamBabuPoudel"
           target="_blank"
           rel="noreferrer"
           className="rounded-2xl border border-white/10 bg-slate-900 p-6 hover:border-cyan-400/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/10 transition duration-300"
         >
           <FaGithub className="text-cyan-400 text-2xl mb-4" />
           <h3 className="text-lg font-semibold mb-2">GitHub</h3>
-          <p className="text-gray-400">github.com/yourusername</p>
+          <p className="text-gray-400">github.com/SangamBabuPoudel</p>
         </a>
 
         <a
-          href="https://linkedin.com/in/yourusername"
+          href="https://linkedin.com/in/sangambabupoudel"
           target="_blank"
           rel="noreferrer"
           className="rounded-2xl border border-white/10 bg-slate-900 p-6 hover:border-cyan-400/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/10 transition duration-300"
         >
           <FaLinkedin className="text-cyan-400 text-2xl mb-4" />
           <h3 className="text-lg font-semibold mb-2">LinkedIn</h3>
-          <p className="text-gray-400">linkedin.com/in/yourusername</p>
+          <p className="text-gray-400">linkedin.com/in/sangambabupoudel</p>
         </a>
       </div>
     </motion.section>
