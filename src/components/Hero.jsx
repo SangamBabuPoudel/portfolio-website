@@ -1,83 +1,176 @@
-import { motion } from "framer-motion"
-
+import { useEffect, useRef, useState } from "react";
+import {
+  motion as Motion,
+  useInView,
+  useMotionValue,
+  useSpring,
+  useReducedMotion,
+} from "framer-motion";
+import {
+  FiArrowDown,
+  FiArrowUpRight,
+  FiShield,
+  FiPause,
+  FiPlay,
+} from "react-icons/fi";
+const roles = [
+  "SOC Analyst",
+  "Detection Engineer",
+  "Security Developer",
+  "Cybersecurity Student",
+  "Security Researcher",
+];
 export default function Hero() {
+  const [role, setRole] = useState(0);
+  const reduced = useReducedMotion();
+  const ref = useRef(null);
+  const [paused, setPaused] = useState(false);
+  const visible = useInView(ref);
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const rotateY = useSpring(pointerX, { stiffness: 55, damping: 22 });
+  const rotateX = useSpring(pointerY, { stiffness: 55, damping: 22 });
+  useEffect(() => {
+    if (reduced || paused || !visible) return;
+    const timer = setInterval(
+      () => setRole((x) => (x + 1) % roles.length),
+      4000,
+    );
+    return () => clearInterval(timer);
+  }, [reduced, paused, visible]);
+  function move(e) {
+    if (reduced || paused || !matchMedia("(pointer: fine)").matches) return;
+    const bounds = e.currentTarget.getBoundingClientRect();
+    ref.current.style.setProperty("--mouse-x", `${e.clientX - bounds.left}px`);
+    ref.current.style.setProperty("--mouse-y", `${e.clientY - bounds.top}px`);
+    pointerX.set(((e.clientX - bounds.left) / bounds.width - 0.5) * 12);
+    pointerY.set(-((e.clientY - bounds.top) / bounds.height - 0.5) * 10);
+  }
   return (
-    <section className="relative min-h-screen flex items-center px-6 pt-24 overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-32 left-20 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="absolute bottom-20 right-20 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
+    <section
+      id="home"
+      className="hero"
+      ref={ref}
+      onPointerMove={move}
+      onPointerLeave={() => {
+        pointerX.set(0);
+        pointerY.set(0);
+      }}
+      data-motion={paused || reduced || !visible ? "paused" : "running"}
+    >
+      <div className="hero-grid" aria-hidden="true" />
+      <div className="hero-content">
+        <div className="availability">
+          <span className="status-dot" /> OPEN TO CYBERSECURITY INTERNSHIPS
+        </div>
+        <p className="hero-name">SANGAM BABU POUDEL</p>
+        <h1>
+          Cybersecurity Student<span className="headline-dot"> · </span>
+          <br />
+          <span>
+            SOC & Detection
+            <br />
+            Engineering
+          </span>
+          <span className="headline-dot"> · </span>
+          <br />
+          Security Development
+        </h1>
+        <p className="hero-copy">
+          Building security systems, investigating threats, and developing
+          hands-on experience across SOC operations, detection engineering,
+          network security, phishing defense, and security-focused software
+          development.
+        </p>
+        <div className="hero-buttons">
+          <a className="button primary" href="#projects">
+            View Projects <FiArrowUpRight />
+          </a>
+          <a className="button" href="#contact">
+            Contact Me <FiArrowUpRight />
+          </a>
+          <a
+            className="text-link"
+            href="/resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View Resume ↗
+          </a>
+        </div>
+        <div className="role-line">
+          <span aria-hidden="true">&gt;_</span>
+          <span className="sr-only">
+            Areas of interest: SOC analysis, detection engineering, security
+            development, and research.
+          </span>
+          <span key={role} className="rotating-role" aria-hidden="true">
+            {roles[role]}
+          </span>
+          <span className="terminal-cursor" aria-hidden="true" />
+        </div>
       </div>
-
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center w-full">
-        {/* Left Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+      <div className="hero-visual" aria-label="Security workflow illustration">
+        <div className="visual-topline">
+          <span>DEFENSE IN DEPTH</span>
+          <span className="accent">● SYSTEM MINDSET</span>
+        </div>
+        <Motion.div
+          className="orbit-scene"
+          aria-hidden="true"
+          style={{
+            rotateX: reduced || paused ? 0 : rotateX,
+            rotateY: reduced || paused ? 0 : rotateY,
+          }}
         >
-          <p className="text-cyan-400 font-mono mb-4">
-            &gt; Aspiring Cybersecurity Analyst
-          </p>
-
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
-            Sangam Babu Poudel
-          </h1>
-
-          <p className="text-gray-400 text-lg leading-8 mb-8 max-w-xl">
-            I am an aspiring cybersecurity analyst with hands-on experience in
-            log analysis, network monitoring, and security tools such as
-            Wireshark, Nmap, and ELK Stack. I enjoy learning by doing and
-            building practical technical skills through projects.
-          </p>
-
-          <div className="flex flex-wrap gap-4">
-            <a
-              href="#projects"
-              className="px-6 py-3 bg-cyan-500 text-black font-semibold rounded-lg hover:bg-cyan-400 transition shadow-lg shadow-cyan-500/20"
-            >
-              View Projects
-            </a>
-
-            <a
-              href="#contact"
-              className="px-6 py-3 border border-cyan-400 text-cyan-400 rounded-lg hover:bg-cyan-400 hover:text-black transition"
-            >
-              Contact Me
-            </a>
-
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="px-6 py-3 border border-gray-500 text-gray-300 rounded-lg hover:border-cyan-400 hover:text-cyan-400 transition"
-            >
-              Download Resume
-            </a>
+          <div className="signal-ring signal-ring-one" />
+          <div className="signal-ring signal-ring-two" />
+          <div className="orbit orbit-one" />
+          <div className="orbit orbit-two" />
+          <div className="orbit orbit-three" />
+          <div className="orbit-axis" />
+          <div className="shield-core">
+            <FiShield />
           </div>
-        </motion.div>
-
-        {/* Right Image */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ opacity: { duration: 0.9, delay: 0.2 },
-            scale: { duration: 0.9, delay: 0.2 },
-            y: { duration: 4, repeat: Infinity, ease: "easeInOut" }, }}
-          className="flex justify-center"
-        >
-          <div className="relative">
-            <div className="absolute inset-0 rounded-3xl bg-cyan-500/20 blur-2xl" />
-            <div className="relative rounded-3xl border border-cyan-400/20 bg-slate-900/70 p-3 shadow-2xl shadow-cyan-500/10 backdrop-blur">
-              <img
-                src="/profile.jpg"
-                alt="Sangam Babu Poudel"
-                className="w-72 h-72 md:w-96 md:h-96 object-cover rounded-2xl"
-              />
-            </div>
+          <span className="orbit-label label-one">01 / OBSERVE</span>
+          <span className="orbit-label label-two">02 / DETECT</span>
+          <span className="orbit-label label-three">03 / INVESTIGATE</span>
+        </Motion.div>
+        <div className="visual-bottom">
+          <span>
+            TELEMETRY <b>→</b> INSIGHT <b>→</b> ACTION
+          </span>
+          <div className="visual-controls">
+            <span>SECURITY, BUILT WITH INTENT.</span>
+            {!reduced && (
+              <button
+                className="motion-toggle"
+                aria-label={
+                  paused ? "Play hero animation" : "Pause hero animation"
+                }
+                aria-pressed={paused}
+                onClick={() => {
+                  setPaused(!paused);
+                  pointerX.set(0);
+                  pointerY.set(0);
+                }}
+              >
+                {paused ? <FiPlay /> : <FiPause />}
+                <span>{paused ? "PLAY" : "PAUSE"}</span>
+              </button>
+            )}
           </div>
-        </motion.div>
+        </div>
+      </div>
+      <div className="hero-bottom">
+        <span>
+          UNIVERSITY OF SOUTH FLORIDA{" "}
+          <span className="muted">/ BS · EXPECTED 2028</span>
+        </span>
+        <a href="#projects">
+          EXPLORE THE WORK <FiArrowDown />
+        </a>
       </div>
     </section>
-  )
+  );
 }

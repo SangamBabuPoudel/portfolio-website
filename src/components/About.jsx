@@ -1,45 +1,48 @@
-import { motion } from "framer-motion"
-
+import { Section } from "./UI";
+import Terminal from "./Terminal";
 export default function About() {
   return (
-    <motion.section
+    <Section
       id="about"
-      className="max-w-5xl mx-auto px-6 py-24 border-t border-white/10"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.7 }}
+      number="01"
+      eyebrow="Behind the work"
+      title="Curious by nature. Defensive by design."
     >
-      <div className="grid md:grid-cols-2 gap-10 items-start">
+      <div className="about-grid">
         <div>
-          <p className="text-cyan-400 font-mono mb-3">01. About Me</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Cybersecurity student building real technical experience
-          </h2>
+          <div className="profile-row">
+            <img
+              src="/profile-thumb.jpg"
+              alt="Sangam Babu Poudel"
+              width="80"
+              height="80"
+              loading="lazy"
+            />
+            <div>
+              <strong>Sangam Babu Poudel</strong>
+              <span>Cybersecurity student · USF</span>
+            </div>
+          </div>
+          <p>
+            I’m pursuing a BS in Computer & Information Systems Security at the
+            University of South Florida, with an expected graduation in May
+            2028.
+          </p>
+          <p>
+            I learn by building, investigating, and asking why. My hands-on work
+            spans security monitoring, network traffic analysis, intrusion
+            detection, threat intelligence, and malware analysis.
+          </p>
+          <p>
+            I’m seeking an internship where I can contribute, keep learning, and
+            turn strong technical foundations into practical security work.
+          </p>
+          <a href="#experience" className="text-link">
+            More about my background ↗
+          </a>
         </div>
-
-        <div className="text-gray-400 space-y-4 leading-8">
-          <p>
-            I am a cybersecurity student at the University of South Florida,
-            currently pursuing a Bachelor of Science in Computer & Information
-            Systems Security with an expected graduation date of May 2028.
-          </p>
-
-          <p>
-            My experience includes security monitoring, network traffic
-            analysis, intrusion detection, threat intelligence, and malware
-            analysis through hands-on labs and academic projects. I enjoy
-            understanding how systems behave, identifying suspicious activity,
-            and applying security concepts in practical environments.
-          </p>
-
-          <p>
-            I am currently seeking internship opportunities where I can
-            contribute, keep learning, and continue developing strong technical
-            foundations in IT and cybersecurity.
-          </p>
-        </div>
+        <Terminal />
       </div>
-    </motion.section>
-  )
+    </Section>
+  );
 }

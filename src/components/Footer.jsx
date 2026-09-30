@@ -1,11 +1,22 @@
+import { profile } from "../data/portfolio";
+import { ExternalLink } from "./UI";
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10">
-      <div className="max-w-5xl mx-auto px-6 py-8 text-center text-gray-400">
+    <footer>
+      <div>
+        <a href="#home" className="wordmark">
+          sangam<span>.dev</span>_
+        </a>
         <p>
-          © 2026 Sangam Babu Poudel. Built with React and Tailwind CSS.
+          © {new Date().getFullYear()} {profile.name}
         </p>
       </div>
+      <div>
+        <span>Built with React & Tailwind CSS</span>
+        <ExternalLink href={profile.github}>GitHub</ExternalLink>
+        <ExternalLink href={profile.linkedin}>LinkedIn</ExternalLink>
+        <a href="#home">Back to top ↑</a>
+      </div>
     </footer>
-  )
+  );
 }

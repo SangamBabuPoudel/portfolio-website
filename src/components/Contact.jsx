@@ -1,57 +1,63 @@
-import { motion } from "framer-motion"
-import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa"
-
+import { useState } from "react";
+import { FiCopy, FiArrowUpRight } from "react-icons/fi";
+import { profile } from "../data/portfolio";
+import { ExternalLink, Section } from "./UI";
 export default function Contact() {
+  const [message, setMessage] = useState("");
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setMessage("Email copied to clipboard.");
+    } catch {
+      setMessage(
+        "Please select and copy the email address, or use the email link.",
+      );
+    }
+  }
   return (
-    <motion.section
+    <Section
       id="contact"
-      className="max-w-5xl mx-auto px-6 py-24 border-t border-white/10"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.7 }}
+      number="10"
+      eyebrow="Let’s connect"
+      title={
+        <>
+          Let’s Build
+          <br />
+          Something <span className="accent">Secure.</span>
+        </>
+      }
+      className="contact-section"
     >
-      <p className="text-cyan-400 font-mono mb-3">04. Contact</p>
-      <h2 className="text-3xl md:text-4xl font-bold mb-6">Let’s connect</h2>
-
-      <p className="text-gray-400 max-w-2xl mb-10 leading-8">
-        I am currently seeking internship opportunities in IT and cybersecurity.
-        Feel free to reach out if you would like to connect, collaborate, or
-        discuss opportunities.
-      </p>
-
-      <div className="grid md:grid-cols-3 gap-6">
-        <a
-          href="mailto:sangampoudel642@gmail.com"
-          className="rounded-2xl border border-white/10 bg-slate-900 p-6 hover:border-cyan-400/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/10 transition duration-300"
-        >
-          <FaEnvelope className="text-cyan-400 text-2xl mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Email</h3>
-          <p className="text-gray-400 break-all">sangampoudel642@gmail.com</p>
-        </a>
-
-        <a
-          href="https://github.com/SangamBabuPoudel"
-          target="_blank"
-          rel="noreferrer"
-          className="rounded-2xl border border-white/10 bg-slate-900 p-6 hover:border-cyan-400/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/10 transition duration-300"
-        >
-          <FaGithub className="text-cyan-400 text-2xl mb-4" />
-          <h3 className="text-lg font-semibold mb-2">GitHub</h3>
-          <p className="text-gray-400">github.com/SangamBabuPoudel</p>
-        </a>
-
-        <a
-          href="https://linkedin.com/in/sangambabupoudel"
-          target="_blank"
-          rel="noreferrer"
-          className="rounded-2xl border border-white/10 bg-slate-900 p-6 hover:border-cyan-400/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/10 transition duration-300"
-        >
-          <FaLinkedin className="text-cyan-400 text-2xl mb-4" />
-          <h3 className="text-lg font-semibold mb-2">LinkedIn</h3>
-          <p className="text-gray-400">linkedin.com/in/sangambabupoudel</p>
-        </a>
+      <div className="contact-layout">
+        <p>
+          I’m seeking internship opportunities in IT and cybersecurity. Have a
+          project, an opportunity, or an interesting security problem? Let’s
+          talk.
+        </p>
+        <div>
+          <div className="email-row">
+            <a href={`mailto:${profile.email}`}>
+              {profile.email}
+              <FiArrowUpRight />
+            </a>
+            <button
+              className="icon-button"
+              onClick={copy}
+              aria-label="Copy email address"
+            >
+              <FiCopy />
+            </button>
+          </div>
+          <p className="copy-message" role="status">
+            {message}
+          </p>
+          <div className="contact-links">
+            <ExternalLink href={profile.linkedin}>LinkedIn</ExternalLink>
+            <ExternalLink href={profile.github}>GitHub</ExternalLink>
+            <ExternalLink href="/resume.pdf">View Resume</ExternalLink>
+          </div>
+        </div>
       </div>
-    </motion.section>
-  )
+    </Section>
+  );
 }

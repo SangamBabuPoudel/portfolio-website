@@ -1,16 +1,37 @@
-# React + Vite
+# Sangam Babu Poudel — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Single-page React 19 portfolio, built with Vite, Tailwind CSS, Framer Motion, and React Icons. The existing Vite deployment setup is preserved; no backend or environment variables are required.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```sh
+npm install
+npm run dev
+npm run lint
+npm run build
+npm run preview
+```
 
-## React Compiler
+Vercel: use the Vite preset, `npm run build`, and output directory `dist`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Updating content
 
-## Expanding the ESLint configuration
+Edit `src/data/portfolio.js` for featured projects, lab details, skills, current activity, roadmaps, achievements, learning paths, and contact links. Add an entry to the relevant array to reuse the UI. Featured projects optionally support `url`, `github`, `caseStudy`, and `documentation` links; buttons appear only when real URLs are supplied. No project-specific URLs were present in the original repository.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Education and the biography remain in their named components. Update `index.html` when changing the public domain or social metadata. The résumé is `public/resume.pdf`; it opens for viewing rather than forcing a download. The original portrait is preserved in `public/profile.jpg`, with a small display version in `public/profile-thumb.jpg`.
+
+Roadmap steps are explicitly planned because no individual completion milestones were supplied. Update these when there is confirmed progress. The TrustTrace illustration is a labeled interface concept, not a product screenshot. Learning paths are not presented as earned certifications.
+
+## Interactions and accessibility
+
+- Dark theme by default; the theme toggle stores the visitor's preference when storage is available.
+- Responsive keyboard-accessible navigation, active-section indicator, scroll progress, and skip link.
+- Native expandable project/lab details work with touch and keyboard.
+- The terminal accepts a fixed set of harmless local commands; it never executes shell commands.
+- The Konami sequence opens a native dialog with Escape dismissal and focus restoration.
+- Reduced-motion preferences disable decorative animation and smooth scrolling.
+- Email uses a mailto link with a separate copy button; there is no nonfunctional contact form.
+
+## Verification
+
+`npm run build` and `npm run lint` are the repository's available automated checks. There is no TypeScript or existing unit-test runner. Browser verification should cover 320, 375, 768, 1024, and 1440 px widths, both themes, menu navigation, expandable details, terminal input, copy email, and the easter-egg dialog.
