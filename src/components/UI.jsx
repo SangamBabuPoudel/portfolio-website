@@ -1,3 +1,4 @@
+import { useId, useState } from "react";
 import { motion as Motion, useReducedMotion } from "framer-motion";
 
 export function Section({
@@ -17,7 +18,7 @@ export function Section({
       initial={reduced ? false : { opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.06 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="section-heading">
         <div>
@@ -61,5 +62,33 @@ export function ExternalLink({ href, children, className = "" }) {
       {children}
       <span aria-hidden="true"> ↗</span>
     </a>
+  );
+}
+
+export function Expandable({ label, children, className = "" }) {
+  const [open, setOpen] = useState(false);
+  const id = useId();
+  return (
+    <div className={`expandable ${className}`} data-open={open}>
+      <button
+        className="expandable-trigger"
+        aria-expanded={open}
+        aria-controls={id}
+        onClick={() => setOpen(!open)}
+      >
+        {label}
+        <span aria-hidden="true">+</span>
+      </button>
+      <div
+        id={id}
+        className="expandable-panel"
+        inert={!open}
+        aria-hidden={!open}
+      >
+        <div>
+          <div className="expandable-content">{children}</div>
+        </div>
+      </div>
+    </div>
   );
 }

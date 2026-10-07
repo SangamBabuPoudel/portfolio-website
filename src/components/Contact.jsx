@@ -30,7 +30,7 @@ export default function Contact() {
     >
       <div className="contact-layout">
         <p>
-          I’m seeking internship opportunities in IT and cybersecurity. Have a
+          I’m seeking SOC / Security Analyst internship opportunities. Have a
           project, an opportunity, or an interesting security problem? Let’s
           talk.
         </p>
@@ -54,7 +54,7 @@ export default function Contact() {
           <div className="contact-links">
             <ExternalLink href={profile.linkedin}>LinkedIn</ExternalLink>
             <ExternalLink href={profile.github}>GitHub</ExternalLink>
-            <ExternalLink href="/resume.pdf">View Resume</ExternalLink>
+            <ExternalLink href={profile.resume}>View Resume</ExternalLink>
           </div>
         </div>
       </div>

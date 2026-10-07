@@ -1,3 +1,4 @@
+import { profile } from "../data/portfolio";
 import { useEffect, useRef, useState } from "react";
 import {
   motion as Motion,
@@ -77,11 +78,25 @@ export default function Hero() {
           Security Development
         </h1>
         <p className="hero-copy">
-          Building security systems, investigating threats, and developing
-          hands-on experience across SOC operations, detection engineering,
-          network security, phishing defense, and security-focused software
-          development.
+          I build and investigate security systems beyond the classroom: Wazuh
+          and Sysmon telemetry, SIEM detections, and a published
+          phishing-defense extension. Seeking a SOC / Security Analyst
+          internship.
         </p>
+        <div className="hero-evidence" aria-label="Portfolio highlights">
+          <a href="#experience">
+            <strong>3.77</strong>
+            <span>GPA · USF</span>
+          </a>
+          <a href="#soc">
+            <strong>Wazuh + Sysmon</strong>
+            <span>Validated telemetry</span>
+          </a>
+          <a href="#trusttrace">
+            <strong>TrustTrace AI</strong>
+            <span>Published · Sep 2026</span>
+          </a>
+        </div>
         <div className="hero-buttons">
           <a className="button primary" href="#projects">
             View Projects <FiArrowUpRight />
@@ -91,7 +106,7 @@ export default function Hero() {
           </a>
           <a
             className="text-link"
-            href="/resume.pdf"
+            href={profile.resume}
             target="_blank"
             rel="noreferrer"
           >

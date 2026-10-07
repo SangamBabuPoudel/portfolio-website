@@ -1,11 +1,8 @@
-import {
-  FiArrowUpRight,
-  FiShield,
-  FiActivity,
-  FiTrendingUp,
-} from "react-icons/fi";
+import { useState } from "react";
+import { motion as Motion, useReducedMotion } from "framer-motion";
+import { FiShield, FiActivity, FiTrendingUp } from "react-icons/fi";
 import { projects, labs } from "../data/portfolio";
-import { Section, Tags, Pipeline, ExternalLink } from "./UI";
+import { Section, Tags, Pipeline, ExternalLink, Expandable } from "./UI";
 function ProjectVisual({ project }) {
   if (project.id === "trusttrace")
     return (
@@ -107,15 +104,16 @@ export default function Projects() {
                   {project.linkLabel || "Open project"}
                 </ExternalLink>
               )}
-              <details className="project-details">
-                <summary>
-                  {i === 0
-                    ? "View Project"
+              <Expandable
+                className="project-details"
+                label={
+                  i === 0
+                    ? "Behind the project"
                     : i === 1
                       ? "Explore Lab"
-                      : "Explore Project"}{" "}
-                  <FiArrowUpRight />
-                </summary>
+                      : "Explore Project"
+                }
+              >
                 <div>
                   <p>{project.detail}</p>
                   <p className="eyebrow">Technology</p>
@@ -134,7 +132,7 @@ export default function Projects() {
                     </ExternalLink>
                   )}
                 </div>
-              </details>
+              </Expandable>
             </div>
             <ProjectVisual project={project} />
             {i === 0 && (
@@ -149,36 +147,68 @@ export default function Projects() {
   );
 }
 export function SecurityLabs() {
+  const [filter, setFilter] = useState("All");
+  const reduced = useReducedMotion();
+  const filteredLabs = labs.filter(
+    (lab) => filter === "All" || lab.category === filter,
+  );
   return (
     <Section
       id="labs"
       number="03"
       eyebrow="Learn by investigating"
       title="Security Labs"
-      description="Hands-on academic work. Real tools, controlled environments, and a focus on the investigation."
+      description="Academic investigations and self-directed practice. Real tools, authorized environments, and a focus on the evidence."
     >
+      <div
+        className="lab-filters"
+        role="group"
+        aria-label="Filter security labs"
+      >
+        {["All", "Monitoring", "Analysis", "Practice"].map((category) => (
+          <button
+            key={category}
+            aria-pressed={filter === category}
+            onClick={() => setFilter(category)}
+          >
+            {category}
+            <span>
+              {category === "All"
+                ? labs.length
+                : labs.filter((lab) => lab.category === category).length}
+            </span>
+          </button>
+        ))}
+      </div>
+      <p className="sr-only" role="status">
+        {filteredLabs.length} labs shown
+      </p>
       <div className="lab-grid">
-        {labs.map((lab, i) => (
-          <article className="lab-card" key={lab.title}>
+        {filteredLabs.map((lab) => (
+          <Motion.article
+            layout={!reduced}
+            initial={reduced ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="lab-card"
+            key={lab.title}
+          >
             <div className="lab-top">
-              <span>LAB / 0{i + 1}</span>
-              <span>ACADEMIC PROJECT</span>
+              <span>LAB / 0{labs.indexOf(lab) + 1}</span>
+              <span>{lab.status}</span>
             </div>
             <h3>{lab.title}</h3>
             <p>{lab.description}</p>
             <p className="lab-metric">{lab.metric}</p>
             <Tags items={lab.tools} />
-            <details>
-              <summary>
-                View Details <span>+</span>
-              </summary>
+            <Expandable label="View Details">
               <ul>
                 {lab.details.map((detail) => (
                   <li key={detail}>{detail}</li>
                 ))}
               </ul>
-            </details>
-          </article>
+            </Expandable>
+          </Motion.article>
         ))}
       </div>
     </Section>

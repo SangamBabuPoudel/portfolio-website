@@ -25,17 +25,20 @@ export default function About() {
           </div>
           <p>
             I’m pursuing a BS in Computer & Information Systems Security at the
-            University of South Florida, with an expected graduation in May
-            2028.
+            University of South Florida, with an expected graduation in May 2028
+            and a 3.77 GPA.
           </p>
           <p>
-            I learn by building, investigating, and asking why. My hands-on work
-            spans security monitoring, network traffic analysis, intrusion
-            detection, threat intelligence, and malware analysis.
+            Based in Tampa, I learn by building, investigating, and asking why.
+            I’ve validated a Wazuh/Sysmon telemetry pipeline, investigated
+            Windows service changes, and published a privacy-first
+            phishing-detection extension. My academic work spans SIEM
+            detections, Snort rules, threat intelligence, and memory forensics.
           </p>
           <p>
-            I’m seeking an internship where I can contribute, keep learning, and
-            turn strong technical foundations into practical security work.
+            I’m seeking a SOC / Security Analyst internship where I can
+            contribute, keep learning, and turn strong technical foundations
+            into practical security work.
           </p>
           <a href="#experience" className="text-link">
             More about my background ↗

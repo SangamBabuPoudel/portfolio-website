@@ -1,5 +1,8 @@
 export const profile = {
   name: "Sangam Babu Poudel",
+  resume: "/resume.pdf?v=1adddca34428",
+  location: "Tampa, FL",
+  gpa: "3.77",
   email: "sangampoudel642@gmail.com",
   github: "https://github.com/SangamBabuPoudel",
   linkedin: "https://linkedin.com/in/sangambabupoudel",
@@ -13,7 +16,7 @@ export const projects = [
     subtitle: "Privacy-First Browser Security Extension",
     status: "Published",
     description:
-      "A privacy-first Chrome security extension that analyzes URLs and browsing context for phishing, scams, fake login pages, lookalike domains, suspicious redirects, and clipboard-link risks.",
+      "Published in September 2026, TrustTrace AI v1.0.0 is a local-first phishing-detection extension. It analyzes URLs, lookalike domains, punycode, redirects, and clipboard-link risks without sending browsing data to a server.",
     capabilities: [
       "Trust Badges",
       "Clipboard Guardian",
@@ -33,7 +36,7 @@ export const projects = [
     ],
     pipeline: ["Browse", "Analyze", "Score", "Warn", "Explain"],
     detail:
-      "Google Search trust badges, pre-visit warning pages, and caution banners make explainable risk signals available while browsing. A Security Report Card and Clipboard Guardian complement local-first URL and domain analysis. Regression testing covers legitimate authentication and SSO redirects to reduce false positives.",
+      "Google Search trust badges, pre-visit warning pages, and caution banners make explainable risk signals available while browsing. A Security Report Card and Clipboard Guardian complement local-first URL and domain analysis. Regression tests and false-positive handling cover Microsoft, Google, GitHub, Duo, Okta, Auth0, Cloudflare, and university SSO login redirects.",
   },
   {
     id: "soc",
@@ -41,7 +44,7 @@ export const projects = [
     subtitle: "Endpoint Telemetry → Detection → Investigation",
     status: "Active build",
     description:
-      "An enterprise-style SOC environment with Windows and Linux systems in VMware for security monitoring, endpoint telemetry, network analysis, and incident investigation.",
+      "A VMware lab with Windows and Ubuntu endpoints, Sysmon, and Wazuh. Validated endpoint telemetry from event creation through collection, indexing, and dashboard search.",
     capabilities: [
       "Endpoint Telemetry",
       "Attack Simulation",
@@ -66,9 +69,9 @@ export const projects = [
       "Investigation",
       "MITRE ATT&CK",
     ],
-    stage: "Attack simulation & detection engineering",
+    stage: "Telemetry validation & Event ID 7040 investigation",
     detail:
-      "The lab connects endpoint telemetry collection with alert investigation and MITRE ATT&CK mapping. Windows and Linux virtual machines provide a hands-on environment for practicing SOC workflows and network analysis.",
+      "Investigated Windows Service Control Manager Event ID 7040 (BITS start-type change), tracing the endpoint log to its Wazuh event and troubleshooting telemetry gaps. Used Nmap for discovery and enumeration and Wireshark for packet analysis, documenting commands, errors, fixes, and evidence in a lab journal.",
   },
   {
     id: "trading",
@@ -105,18 +108,34 @@ export const projects = [
 ];
 export const labs = [
   {
+    title: "Hack The Box & TryHackMe Labs",
+    category: "Practice",
+    status: "Self-directed · Ongoing",
+    metric: "Authorized lab environments",
+    description: "Using the attacker’s view to inform detection and defense.",
+    tools: ["Nmap/NSE", "Burp Suite", "Metasploit", "Hashcat", "John"],
+    details: [
+      "Completed multiple authorized labs covering enumeration, web security, and password auditing.",
+      "Practiced SMB enumeration, DNS zone-transfer analysis, and SQL injection concepts in controlled lab environments.",
+    ],
+  },
+  {
     title: "Security Monitoring & Detection",
+    category: "Monitoring",
+    status: "Academic project · 2026",
     metric: "03 dashboards · 10+ queries",
     description: "From authentication events to actionable detections.",
     tools: ["Elastic Stack", "KQL", "MITRE ATT&CK"],
     details: [
       "Built 3 Elastic Stack SIEM dashboards and 10+ KQL detection queries.",
-      "Investigated brute-force attempts and authentication failures.",
-      "Practiced SOC-style alert triage, event correlation, and ATT&CK mapping.",
+      "Developed and tested detections for brute-force logins (MITRE T1110), repeated authentication failures, and anomalous user behavior.",
+      "Performed SOC-style alert triage and log correlation across hundreds of simulated events, mapping findings to MITRE ATT&CK.",
     ],
   },
   {
     title: "Network Security Monitoring & Detection",
+    category: "Monitoring",
+    status: "Academic project · 2026",
     metric: "20+ simulated hosts · 500+ packets",
     description: "Understanding the network, one packet at a time.",
     tools: ["Nmap", "Zenmap", "Wireshark", "Snort", "TCP/IP", "DNS", "HTTP"],
@@ -128,6 +147,8 @@ export const labs = [
   },
   {
     title: "Threat Intelligence & Attack Lifecycle Analysis",
+    category: "Analysis",
+    status: "Academic project · 2025",
     metric: "10+ indicators of compromise",
     description: "Connecting individual indicators to the bigger picture.",
     tools: ["MITRE ATT&CK", "STIX", "TAXII", "Soltra Edge"],
@@ -139,6 +160,8 @@ export const labs = [
   },
   {
     title: "Malware Analysis & Memory Forensics",
+    category: "Analysis",
+    status: "Academic project · 2025",
     metric: "1–2 GB memory images · 20+ processes",
     description: "Investigating the artifacts left in memory.",
     tools: ["Volatility", "pslist", "pstree", "netscan", "malfind"],
@@ -150,6 +173,10 @@ export const labs = [
   },
 ];
 export const skills = [
+  [
+    "Authorized lab practice",
+    ["Metasploit", "Burp Suite", "Hashcat", "John", "Nmap/NSE"],
+  ],
   [
     "Defensive security",
     [
@@ -165,7 +192,19 @@ export const skills = [
   ],
   [
     "Network security",
-    ["Wireshark", "Nmap", "Zenmap", "Snort", "TCP/IP", "DNS", "HTTP", "ICMP"],
+    [
+      "Wireshark",
+      "Nmap",
+      "Zenmap",
+      "Snort",
+      "TCP/IP",
+      "DNS",
+      "HTTP",
+      "ICMP",
+      "ARP",
+      "DHCP",
+      "NAT",
+    ],
   ],
   [
     "Security analysis",
@@ -209,7 +248,7 @@ export const activity = [
   [
     "Active",
     "Enterprise SOC Home Lab",
-    "Attack simulation & detection engineering",
+    "Telemetry validation & event investigation",
   ],
   [
     "Improving",
@@ -217,7 +256,7 @@ export const activity = [
     "Detection quality and false-positive reduction",
   ],
   ["Building", "Trading Signal Engine", "Backtesting and outcome analysis"],
-  ["Learning", "Security+", "Security operations and architecture"],
+  ["Learning", "Cisco CyberOps Associate", "200-201 CBROPS · In progress"],
 ];
 export const roadmaps = [
   {
@@ -262,8 +301,8 @@ export const learning = [
     ],
   ],
   [
-    "Cisco CyberOps Associate",
-    "Planned",
+    "Cisco CyberOps Associate (200-201 CBROPS)",
+    "In progress",
     [
       "SOC Operations",
       "Security Monitoring",
