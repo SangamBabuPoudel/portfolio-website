@@ -51,9 +51,10 @@ function ProjectVisual({ project }) {
   return (
     <div className={`project-diagram ${project.id}`}>
       <span className="mock-label">
-        {project.id === "soc" ? "LAB ARCHITECTURE" : "SIGNAL WORKFLOW"}
+        {project.diagramLabel ||
+          (project.id === "soc" ? "LAB ARCHITECTURE" : "SIGNAL WORKFLOW")}
       </span>
-      {project.id === "soc" ? (
+      {project.id !== "trading" ? (
         <FiActivity className="diagram-icon" />
       ) : (
         <FiTrendingUp className="diagram-icon" />
@@ -87,7 +88,9 @@ export default function Projects() {
             <div className="project-info">
               <div className="project-top">
                 <span className="eyebrow">PROJECT / 0{i + 1}</span>
-                <span className={`status ${i === 0 ? "published" : ""}`}>
+                <span
+                  className={`status ${project.status === "Published" ? "published" : ""}`}
+                >
                   <span className="status-dot" />
                   {project.status}
                 </span>
@@ -104,23 +107,34 @@ export default function Projects() {
                   {project.linkLabel || "Open project"}
                 </ExternalLink>
               )}
+              {project.github && (
+                <ExternalLink
+                  href={project.github}
+                  className="button project-store-link"
+                >
+                  View on GitHub
+                </ExternalLink>
+              )}
               <Expandable
                 className="project-details"
                 label={
-                  i === 0
+                  project.id === "trusttrace"
                     ? "Behind the project"
-                    : i === 1
-                      ? "Explore Lab"
-                      : "Explore Project"
+                    : project.id === "trading"
+                      ? "Explore Project"
+                      : "Explore Lab"
                 }
               >
                 <div>
                   <p>{project.detail}</p>
+                  {project.evidence?.map((item) => (
+                    <div className="project-evidence" key={item.title}>
+                      <h4>{item.title}</h4>
+                      <p>{item.text}</p>
+                    </div>
+                  ))}
                   <p className="eyebrow">Technology</p>
                   <Tags items={project.tools} />
-                  {project.github && (
-                    <ExternalLink href={project.github}>GitHub</ExternalLink>
-                  )}
                   {project.caseStudy && (
                     <ExternalLink href={project.caseStudy}>
                       Case study
@@ -135,7 +149,7 @@ export default function Projects() {
               </Expandable>
             </div>
             <ProjectVisual project={project} />
-            {i === 0 && (
+            {project.id === "trusttrace" && (
               <div className="flagship-pipeline">
                 <Pipeline steps={project.pipeline} />
               </div>

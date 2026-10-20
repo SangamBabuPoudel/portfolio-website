@@ -2050,3 +2050,25 @@ footer > div:last-child {
     font-size: 10px;
   }
 }
+
+.project-evidence {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  margin-top: 16px;
+}
+.project-evidence h4 {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+.featured-project.medishield {
+  border-color: color-mix(in srgb, var(--cyan) 35%, var(--line));
+}
+.project-diagram.medishield {
+  background: linear-gradient(
+    135deg,
+    transparent,
+    color-mix(in srgb, var(--cyan) 8%, transparent)
+  );
+}

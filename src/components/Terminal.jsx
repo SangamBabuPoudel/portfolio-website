@@ -5,7 +5,8 @@ const responses = {
   whoami: "Sangam Babu Poudel · Cybersecurity student at USF",
   skills:
     "SOC Operations · Detection Engineering · Network Security · Security Development · Threat Analysis",
-  projects: "TrustTrace AI · Enterprise SOC Home Lab · Intelligent Trading Bot",
+  projects:
+    "TrustTrace AI · MediShield SOC · Enterprise SOC Home Lab · Intelligent Trading Bot",
   status: "Building. Learning. Investigating.",
 };
 const initialLines = [
