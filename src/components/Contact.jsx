@@ -54,7 +54,7 @@ export default function Contact() {
           <div className="contact-links">
             <ExternalLink href={profile.linkedin}>LinkedIn</ExternalLink>
             <ExternalLink href={profile.github}>GitHub</ExternalLink>
-            <a href={profile.resumeRequest}>Request Resume ↗</a>
+            <a href={profile.resumeRequest} target="_blank" rel="noreferrer" aria-label="Request Resume — opens Gmail in a new tab">Request Resume ↗</a>
           </div>
         </div>
       </div>

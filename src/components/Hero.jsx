@@ -107,6 +107,9 @@ export default function Hero() {
           <a
             className="text-link"
             href={profile.resumeRequest}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Request Resume — opens Gmail in a new tab"
           >
             Request Resume ↗
           </a>

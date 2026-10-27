@@ -1,6 +1,6 @@
 export const profile = {
   name: "Sangam Babu Poudel",
-  resumeRequest: "mailto:sangampoudel642@gmail.com?subject=Resume%20request&body=Hi%20Sangam%2C%0A%0AI%27d%20like%20to%20request%20your%20resume.%0A%0A",
+  resumeRequest: "https://mail.google.com/mail/?view=cm&fs=1&to=sangampoudel642%40gmail.com&su=Interested+in+viewing+your+resume&body=Hi+Sangam%2C%0A%0AI+came+across+your+portfolio+and+would+be+interested+in+reviewing+your+resume.+Could+you+please+share+a+copy+with+me%3F%0A%0AThank+you%21",
   location: "Tampa, FL",
   gpa: "3.77",
   email: "sangampoudel642@gmail.com",
