@@ -319,7 +319,7 @@ export const activity = [
     "Detection quality and false-positive reduction",
   ],
   ["Building", "Trading Signal Engine", "Backtesting and outcome analysis"],
-  ["Learning", "Cisco CyberOps Associate", "200-201 CBROPS · In progress"],
+  ["Learning", "CompTIA Security+", "Exam preparation · In progress"],
 ];
 export const roadmaps = [
   {
@@ -352,7 +352,7 @@ export const roadmaps = [
 export const learning = [
   [
     "CompTIA Security+",
-    "In preparation",
+    "In progress",
     [
       "Security Operations",
       "Threats & Vulnerabilities",
@@ -361,18 +361,6 @@ export const learning = [
       "Risk Management",
       "Incident Response",
       "Governance",
-    ],
-  ],
-  [
-    "Cisco CyberOps Associate (200-201 CBROPS)",
-    "In progress",
-    [
-      "SOC Operations",
-      "Security Monitoring",
-      "Network Intrusion Analysis",
-      "Incident Investigation",
-      "Alert Handling",
-      "Threat Analysis",
     ],
   ],
   [
