@@ -106,11 +106,9 @@ export default function Hero() {
           </a>
           <a
             className="text-link"
-            href={profile.resume}
-            target="_blank"
-            rel="noreferrer"
+            href={profile.resumeRequest}
           >
-            View Resume ↗
+            Request Resume ↗
           </a>
         </div>
         <div className="role-line">

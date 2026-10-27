@@ -54,7 +54,7 @@ export default function Contact() {
           <div className="contact-links">
             <ExternalLink href={profile.linkedin}>LinkedIn</ExternalLink>
             <ExternalLink href={profile.github}>GitHub</ExternalLink>
-            <ExternalLink href={profile.resume}>View Resume</ExternalLink>
+            <a href={profile.resumeRequest}>Request Resume ↗</a>
           </div>
         </div>
       </div>

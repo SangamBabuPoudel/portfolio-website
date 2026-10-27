@@ -1,6 +1,6 @@
 export const profile = {
   name: "Sangam Babu Poudel",
-  resume: "/resume.pdf?v=1adddca34428",
+  resumeRequest: "mailto:sangampoudel642@gmail.com?subject=Resume%20request&body=Hi%20Sangam%2C%0A%0AI%27d%20like%20to%20request%20your%20resume.%0A%0A",
   location: "Tampa, FL",
   gpa: "3.77",
   email: "sangampoudel642@gmail.com",
